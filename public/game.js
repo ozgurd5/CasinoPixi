@@ -7,20 +7,13 @@ let app = new PIXI.Application({
 
 document.body.appendChild(app.view);
 
-//TODO: create button class
+const upButtonPath = "sprites/blueUp.png";
+const upButton = new ozgurButton(upButtonPath, 2, app.screen.width/2, app.screen.height/8);
+app.stage.addChild(upButton.pixiObj);
 
-const upButton = PIXI.Sprite.from("sprites/up.png");
-upButton.scale.set(0.5,0.5);
-upButton.anchor.set(0.5,0.5);
-upButton.x = app.screen.width / 2;
-upButton.y = app.screen.height / 8;
-upButton.interactive = true;
-upButton.cursor = "pointer";
-app.stage.addChild(upButton);
+const upButtonData = { id: "0", credits: 100 };
 
-const upButtonData = { id: "0", credits: "100" };
-
-upButton.on("click", () => {
+upButton.pixiObj.on("click", () => {
     fetch("/UpButton", {
       method: "POST",
       headers: {
@@ -33,16 +26,11 @@ upButton.on("click", () => {
     });
 });
 
-const downButton = PIXI.Sprite.from("sprites/down.png");
-downButton.scale.set(0.5, 0.5);
-downButton.anchor.set(0.5, 0.5);
-downButton.x = app.screen.width / 2;
-downButton.y = app.screen.height / 8 * 7;
-downButton.interactive = true;
-downButton.cursor = "pointer";
-app.stage.addChild(downButton);
+const downButtonPath = "sprites/blueDown.png";
+const downButton = new ozgurButton(downButtonPath, 2, app.screen.width/2, app.screen.height/8*7);
+app.stage.addChild(downButton.pixiObj);
 
-downButton.on("click", () => {
+downButton.pixiObj.on("click", () => {
   fetch("/DownButton", {
     method: "POST",
   }).then(() => {
