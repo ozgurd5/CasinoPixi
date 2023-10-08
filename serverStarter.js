@@ -1,12 +1,8 @@
-const fs = require("fs");
-const userDataPath = "user-data.json"
-
 const express = require("express");
 const app = express();
 const port = 3000;
 
 app.use(express.static("public"));
-app.use(express.json());
 
 app.listen(port, () => {
   console.log("Server is running");
@@ -15,6 +11,12 @@ app.listen(port, () => {
 app.get("/", (req, res) => {
   res.sendFile("public/index.html");
 });
+
+//MOVE THIS PART TO A DIFFERENT SCRIPT
+app.use(express.json());
+
+const fs = require("fs");
+const userDataPath = "user-data.json";
 
 app.post("/UpButton", (req, res) => {
   console.log("Up Button pressed on the client");
@@ -34,3 +36,4 @@ function ChangeCredits(id, amount)
   userDataObj[id].credits += amount;
   fs.writeFileSync(userDataPath, JSON.stringify(userDataObj));
 }
+//MOVE THIS PART TO A DIFFERENT SCRIPT

@@ -1,3 +1,6 @@
+//CREATES PIXI APPLICATION
+//PLACES SPRITES AND TEXTS
+
 let app = new PIXI.Application({
     width: 550,
     height: 810,
@@ -58,3 +61,4 @@ slotBackgroundRight.anchor.set(0.5, 0.5);
 slotBackgroundRight.x = 405;
 slotBackgroundRight.y = 350;
 app.stage.addChild(slotBackgroundRight);
+
