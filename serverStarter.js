@@ -9,31 +9,31 @@ app.listen(port, () => {
 });
 
 app.get("/", (req, res) => {
-  res.sendFile("public/index.html");
+  res.sendFile("public/index.html").sendStatus(200);
 });
 
-//MOVE THIS PART TO A DIFFERENT SCRIPT
-app.use(express.json());
-
+//TODO: MOVE THIS PART TO A DIFFERENT SCRIPT
 const fs = require("fs");
 const userDataPath = "user-data.json";
 
-app.post("/UpButton", (req, res) => {
-  console.log("Up Button pressed on the client");
-  ChangeCredits(0, 10);
+app.post("/start", express.text(), (req, res) => {
+  const credits = GetCredits(req.body);
+  res.status(200).send(`${credits}`);
+})
+
+app.post("/playButton", express.json(), (req, res) => {
+  ChangeCredits(req.body.id, -1 * req.body.betAmount);
   res.sendStatus(200);
 });
 
-app.post("/DownButton", (req, res) => {
-  console.log("Down Button pressed on the client");
-  ChangeCredits(0, -10);
-  res.sendStatus(200);
-});
+function GetCredits(id) {
+  const userDataObj = JSON.parse(fs.readFileSync(userDataPath));
+  return userDataObj[id].credits;
+}
 
-function ChangeCredits(id, amount)
-{
+function ChangeCredits(id, amount) {
   const userDataObj = JSON.parse(fs.readFileSync(userDataPath));
   userDataObj[id].credits += amount;
   fs.writeFileSync(userDataPath, JSON.stringify(userDataObj));
 }
-//MOVE THIS PART TO A DIFFERENT SCRIPT
+//TODO: MOVE THIS PART TO A DIFFERENT SCRIPT

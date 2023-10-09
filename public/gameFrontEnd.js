@@ -9,6 +9,7 @@ let app = new PIXI.Application({
 
 document.body.appendChild(app.view);
 
+const blueColorHex = "#19A5E1";
 const blueUpButtonPath = "sprites/blueUp.png";
 const blueDownButtonPath = "sprites/blueDown.png";
 const blueBoxPath = "sprites/blueBox.png";
@@ -39,7 +40,7 @@ app.stage.addChild(betBox);
 
 const creditsBox = PIXI.Sprite.from(blueBoxFlatPath);
 creditsBox.anchor.set(0.5, 0.5);
-creditsBox.scale.set(2, 1);
+creditsBox.scale.set(1.75, 1);
 creditsBox.x = 275;
 creditsBox.y = 750;
 app.stage.addChild(creditsBox);
@@ -62,3 +63,32 @@ slotBackgroundRight.x = 405;
 slotBackgroundRight.y = 350;
 app.stage.addChild(slotBackgroundRight);
 
+const blueStyle = new PIXI.TextStyle({
+  fontFamily: "Arial",
+  fontSize: 32,
+  fontStyle: "italic",
+  fontWeight: "bold",
+  fill: [blueColorHex, "#FFFFFF"], //Gradient
+  stroke: "#000000",
+  strokeThickness: 3,
+  dropShadow: true,
+  dropShadowColor: "#666666",
+  dropShadowBlur: 2,
+  dropShadowAngle: 90,
+  dropShadowDistance: 1,
+});
+
+let betAmount = 0;
+let creditsAmount = 100;
+
+const betAmountText = new PIXI.Text(`Bet: ${betAmount}`, blueStyle);
+betAmountText.anchor.set(0.5, 0.5);
+betAmountText.x = 275;
+betAmountText.y = 675;
+app.stage.addChild(betAmountText);
+
+const creditsAmountText = new PIXI.Text(`Credits: ${creditsAmount}`, blueStyle);
+creditsAmountText.anchor.set(0.5, 0.5);
+creditsAmountText.x = 275;
+creditsAmountText.y = 750;
+app.stage.addChild(creditsAmountText);
