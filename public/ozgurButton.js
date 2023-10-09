@@ -12,5 +12,19 @@ class ozgurButton {
     this.pixiObj.scale.set(scale, scale);
     this.pixiObj.x = positionX;
     this.pixiObj.y = positionY;
+
+    EventHandler.addEventListener("gameStateChange", event => { this.OnGameStateChange(event.detail) });
+  }
+
+  OnGameStateChange(newGameState) {
+    if (newGameState == GameStateEnum.IDLE) {
+      this.pixiObj.interactive = true;
+      this.pixiObj.cursor = "pointer";
+    }
+
+    else {
+      this.pixiObj.interactive = false;
+      this.pixiObj.cursor = "default";
+    }
   }
 }

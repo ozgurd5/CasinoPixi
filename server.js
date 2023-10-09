@@ -1,4 +1,4 @@
-//INITIALIZATION AND START
+//#region INITIALIZATION AND START
 const express = require("express");
 const app = express();
 const port = 3000;
@@ -22,9 +22,9 @@ function GetCredits(id) {
   const userDataObj = JSON.parse(fs.readFileSync(userDataPath));
   return userDataObj[id].credits;
 }
-//INITIALIZATION AND START
+//#endregion INITIALIZATION AND START
 
-//GENERATING SLOTS
+//#region GENERATING SLOTS
 const rates = {
   "cherry": 0.5,
   "bell": 0.3,
@@ -42,6 +42,7 @@ const payouts = {
   "seven": 7600,
 };
 
+//TODO: EXPLAIN
 function GenerateSlot() {
   const randomNumber = Math.random();
 
@@ -50,13 +51,15 @@ function GenerateSlot() {
   else if (randomNumber > rates["cherry"] + rates["bell"] && randomNumber <= rates["cherry"] + rates["bell"] + rates ["bar"]) return "bar";
   else return "seven";
 }
-//GENERATING SLOTS
+//#endregion
 
-//CLIENT PLAYING
+//#region SLOT AND WIN CALCULATION
 const fs = require("fs");
 const userDataPath = "user-data.json";
 
 app.post("/playButton", express.json(), (req, res) => {
+
+  //Remove bet amount from the credits
   ChangeCredits(req.body.id, -1 * req.body.betAmount);
 
   //This will be sent to the client side
@@ -65,7 +68,10 @@ app.post("/playButton", express.json(), (req, res) => {
   //This will be used for calculations in server side
   const generatedNumbersArray = generatedNumbers.split("-");
 
+  //This will be calculated and sent to the client side
   let winAmount = 0;
+
+  //If 3 slots are equal to each other, calculate and add winAmount to the credits
   if (generatedNumbersArray[0] == generatedNumbersArray[1]) {
     if (generatedNumbersArray[0] == generatedNumbersArray[2]) {
       winAmount = payouts[generatedNumbersArray[0]] * req.body.betAmount;
@@ -73,6 +79,7 @@ app.post("/playButton", express.json(), (req, res) => {
     }
   }
 
+  //Send data to the client side
   res.status(200).json({ "win": winAmount, "results": generatedNumbers});
 });
 
@@ -81,4 +88,4 @@ function ChangeCredits(id, amount) {
   userDataObj[id].credits += amount;
   fs.writeFileSync(userDataPath, JSON.stringify(userDataObj));
 }
-//CLIENT PLAYING
+//#endregion SLOT AND WIN CALCULATION
