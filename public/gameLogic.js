@@ -27,16 +27,21 @@ decreaseBetButton.pixiObj.on("pointerdown", () => {
 
 playButton.pixiObj.on("pointerdown", () => {
     creditsAmount -= betAmount;
-    creditsAmountText.text = `Bet: ${creditsAmount}`;
+    creditsAmountText.text = `Credits: ${creditsAmount}`;
 
     fetch("/playButton", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: `{\"id\": 0, \"betAmount\": ${betAmount}}`
-    });
+    })
+    .then(winAndResults => winAndResults.json())
+    .then(winAndResults => {
+      creditsAmount += winAndResults.win;
+      creditsAmountText.text = `Credits: ${creditsAmount}`;
+
+      console.log(winAndResults.results)
+    })
 
     betAmount = 0;
     betAmountText.text = `Bet: ${betAmount}`;
-
-    console.log("play");
 });

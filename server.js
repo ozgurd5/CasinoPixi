@@ -24,22 +24,6 @@ function GetCredits(id) {
 }
 //INITIALIZATION AND START
 
-//CLIENT COMMUNICATION
-const fs = require("fs");
-const userDataPath = "user-data.json";
-
-app.post("/playButton", express.json(), (req, res) => {
-  ChangeCredits(req.body.id, -1 * req.body.betAmount);
-  res.sendStatus(200);
-});
-
-function ChangeCredits(id, amount) {
-  const userDataObj = JSON.parse(fs.readFileSync(userDataPath));
-  userDataObj[id].credits += amount;
-  fs.writeFileSync(userDataPath, JSON.stringify(userDataObj));
-}
-//CLIENT COMMUNICATION
-
 //GENERATING SLOTS
 const rates = {
   "cherry": 0.5,
@@ -48,13 +32,13 @@ const rates = {
   "seven": 0.05
 }
 
-//RPT = 95%
+//RPT ~95%
 //TODO: GET RTP AND RATES AND CALCULATE PAYOUTS AUTOMATICALLY
 
 const payouts = {
-  "cherry": 7.6,
-  "bell": 35.18,
-  "bar": 281.44,
+  "cherry": 7,
+  "bell": 35,
+  "bar": 282,
   "seven": 7600,
 };
 
@@ -66,9 +50,35 @@ function GenerateSlot() {
   else if (randomNumber > rates["cherry"] + rates["bell"] && randomNumber <= rates["cherry"] + rates["bell"] + rates ["bar"]) return "bar";
   else return "seven";
 }
-
-const generatedNumbers = `${GenerateSlot()}-${GenerateSlot()}-${GenerateSlot()}`;
-
-//CALCULATE CREDITS
-//SEND NEW CREDITS + GENERATED NUMBERS
 //GENERATING SLOTS
+
+//CLIENT PLAYING
+const fs = require("fs");
+const userDataPath = "user-data.json";
+
+app.post("/playButton", express.json(), (req, res) => {
+  ChangeCredits(req.body.id, -1 * req.body.betAmount);
+
+  //This will be sent to the client side
+  const generatedNumbers = `${GenerateSlot()}-${GenerateSlot()}-${GenerateSlot()}`;
+
+  //This will be used for calculations in server side
+  const generatedNumbersArray = generatedNumbers.split("-");
+
+  let winAmount = 0;
+  if (generatedNumbersArray[0] == generatedNumbersArray[1]) {
+    if (generatedNumbersArray[0] == generatedNumbersArray[2]) {
+      winAmount = payouts[generatedNumbersArray[0]] * req.body.betAmount;
+      ChangeCredits(req.body.id, winAmount);
+    }
+  }
+
+  res.status(200).json({ "win": winAmount, "results": generatedNumbers});
+});
+
+function ChangeCredits(id, amount) {
+  const userDataObj = JSON.parse(fs.readFileSync(userDataPath));
+  userDataObj[id].credits += amount;
+  fs.writeFileSync(userDataPath, JSON.stringify(userDataObj));
+}
+//CLIENT PLAYING
