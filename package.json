@@ -2,7 +2,7 @@
   "name": "casinopixi",
   "version": "1.0.0",
   "description": "Casino game using Pixi.js with server and client communication",
-  "main": "serverStarter.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
