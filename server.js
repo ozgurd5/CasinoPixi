@@ -68,5 +68,7 @@ function GenerateSlot() {
 }
 
 const generatedNumbers = `${GenerateSlot()}-${GenerateSlot()}-${GenerateSlot()}`;
-console.log("cherry" == "cherry");
+
+//CALCULATE CREDITS
+//SEND NEW CREDITS + GENERATED NUMBERS
 //GENERATING SLOTS
