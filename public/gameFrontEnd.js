@@ -1,68 +1,100 @@
 //CREATES PIXI APPLICATION
 //PLACES SPRITES AND TEXTS
 
+//#region PIXI APP INIT
 let app = new PIXI.Application({
     width: 550,
     height: 810,
     antialias: true
 });
-
 document.body.appendChild(app.view);
+//#endregion
 
+//#region PATHS
+const redColorHex = "#E86A17";
+const greenColorHex = "#73CD4B";
 const blueColorHex = "#19A5E1";
+const yellowColorHex = "#FFCC00";
+
+const redUpButtonPath = "sprites/redUp.png";
+const greenUpButtonPath = "sprites/greenUp.png";
 const blueUpButtonPath = "sprites/blueUp.png";
+const yellowUpButtonPath = "sprites/yellowUp.png";
+const upButtonPaths = [blueUpButtonPath, redUpButtonPath, greenUpButtonPath, yellowUpButtonPath];
+
+const redDownButtonPath = "sprites/redDown.png";
+const greenDownButtonPath = "sprites/greenDown.png";
 const blueDownButtonPath = "sprites/blueDown.png";
+const yellowDownButtonPath = "sprites/yellowDown.png";
+const downButtonPaths = [blueDownButtonPath, redDownButtonPath, greenDownButtonPath, yellowDownButtonPath];
+
+const redBoxPath = "sprites/redBox.png";
+const greenBoxPath = "sprites/greenBox.png";
 const blueBoxPath = "sprites/blueBox.png";
+const yellowBoxPath = "sprites/yellowBox.png";
+const boxPaths = [blueBoxPath, redBoxPath, greenBoxPath, yellowBoxPath];
+
+const redBoxFlatPath = "sprites/redBoxFlat.png";
+const greenBoxFlatPath = "sprites/greenBoxFlat.png";
 const blueBoxFlatPath = "sprites/blueBoxFlat.png";
+const yellowBoxFlatPath = "sprites/yellowBoxFlat.png";
+const boxFlatPaths = [blueBoxFlatPath, redBoxFlatPath, greenBoxFlatPath, yellowBoxFlatPath];
+
+const redButtonPath = "sprites/redButton.png";
+const greenButtonPath = "sprites/greenButton.png";
 const blueButtonPath = "sprites/blueButton.png";
+const yellowButtonPath = "sprites/yellowButton.png";
+const buttonPaths = [blueButtonPath, redButtonPath, greenButtonPath, yellowButtonPath];
+
+const redButtonPressedPath = "sprites/redButtonPressed.png";
+const greenButtonPressedPath = "sprites/greenButtonPressed.png";
 const blueButtonPressedPath = "sprites/blueButtonPressed.png";
+const yellowButtonPressedPath = "sprites/yellowButtonPressed.png";
+const buttonPressedPaths = [blueButtonPressedPath, redButtonPressedPath, greenButtonPressedPath, yellowButtonPressedPath];
+
+const redSlotBackgroundPath = "sprites/slotBackgroundRed.png";
+const greenSlotBackgroundPath = "sprites/slotBackgroundGreen.png";
+const blueSlotBackgroundPath = "sprites/slotBackgroundBlue.png";
+const yellowSlotBackgroundPath = "sprites/slotBackgroundYellow.png";
+const slotBackgroundPaths = [blueSlotBackgroundPath, redSlotBackgroundPath, greenSlotBackgroundPath, yellowSlotBackgroundPath];
 
 const slotMachinePath = "sprites/slotMachine.png";
-const blueSlotBackgroundPath = "sprites/slotBackgroundBlue.png";
+//#endregion PATHS
 
+//#region SLOT MACHINE
 const slotMachineSprite = PIXI.Sprite.from(slotMachinePath);
 app.stage.addChild(slotMachineSprite);
+//#endregion SLOT MACHINE
 
-const playButton = new ozgurButton(blueButtonPath, 1, 275, 620);
+//#region BUTTONS
+const playButton = new ozgurButton(buttonPaths, 1, 275, 620, 0.1);
 app.stage.addChild(playButton.pixiObj);
 
-const increaseBetButton = new ozgurButton(blueUpButtonPath, 1, 400, 675);
+const increaseBetButton = new ozgurButton(upButtonPaths, 1, 400, 675, 0.1);
 app.stage.addChild(increaseBetButton.pixiObj);
 
-const decreaseBetButton = new ozgurButton(blueDownButtonPath, 1, 150, 675);
+const decreaseBetButton = new ozgurButton(downButtonPaths, 1, 150, 675, 0.1);
 app.stage.addChild(decreaseBetButton.pixiObj);
+//#endregion BUTTONS
 
-const betBox = PIXI.Sprite.from(blueBoxFlatPath);
-betBox.anchor.set(0.5, 0.5);
-betBox.x = 275;
-betBox.y = 675;
-app.stage.addChild(betBox);
+//#region SLOTS AND BOXES
+const betBox = new ozgurSprite(boxFlatPaths, 1, 1, 275, 675, 0.1);
+app.stage.addChild(betBox.pixiObj);
 
-const creditsBox = PIXI.Sprite.from(blueBoxFlatPath);
-creditsBox.anchor.set(0.5, 0.5);
-creditsBox.scale.set(1.75, 1);
-creditsBox.x = 275;
-creditsBox.y = 750;
-app.stage.addChild(creditsBox);
+const creditsBox = new ozgurSprite(boxFlatPaths, 1.5, 1, 275, 750, 0.1);
+app.stage.addChild(creditsBox.pixiObj);
 
-const slotBackgroundLeft = PIXI.Sprite.from(blueSlotBackgroundPath);
-slotBackgroundLeft.anchor.set(0.5, 0.5);
-slotBackgroundLeft.x = 145;
-slotBackgroundLeft.y = 350;
-app.stage.addChild(slotBackgroundLeft);
+const slotBackgroundLeft = new ozgurSprite(slotBackgroundPaths, 1, 1, 145, 350, 0.1);
+app.stage.addChild(slotBackgroundLeft.pixiObj);
 
-const slotBackgroundMiddle = PIXI.Sprite.from(blueSlotBackgroundPath);
-slotBackgroundMiddle.anchor.set(0.5, 0.5);
-slotBackgroundMiddle.x = 275;
-slotBackgroundMiddle.y = 350;
-app.stage.addChild(slotBackgroundMiddle);
+const slotBackgroundMiddle = new ozgurSprite(slotBackgroundPaths, 1, 1, 275, 350, 0.1);
+app.stage.addChild(slotBackgroundMiddle.pixiObj);
 
-const slotBackgroundRight = PIXI.Sprite.from(blueSlotBackgroundPath);
-slotBackgroundRight.anchor.set(0.5, 0.5);
-slotBackgroundRight.x = 405;
-slotBackgroundRight.y = 350;
-app.stage.addChild(slotBackgroundRight);
+const slotBackgroundRight = new ozgurSprite(slotBackgroundPaths, 1, 1, 405, 350, 0.1);
+app.stage.addChild(slotBackgroundRight.pixiObj);
+//#endregion SLOTS AND BOXES
 
+//#region TEXT
 const blueStyle = new PIXI.TextStyle({
   fontFamily: "Arial",
   fontSize: 32,
@@ -79,7 +111,7 @@ const blueStyle = new PIXI.TextStyle({
 });
 
 let betAmount = 0;
-let creditsAmount = 100;
+let creditsAmount = 0;
 
 const betAmountText = new PIXI.Text(`Bet: ${betAmount}`, blueStyle);
 betAmountText.anchor.set(0.5, 0.5);
@@ -92,3 +124,4 @@ creditsAmountText.anchor.set(0.5, 0.5);
 creditsAmountText.x = 275;
 creditsAmountText.y = 750;
 app.stage.addChild(creditsAmountText);
+//#endregion TEXT
