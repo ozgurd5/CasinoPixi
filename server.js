@@ -42,7 +42,9 @@ const payouts = {
   "seven": 7600,
 };
 
-//TODO: EXPLAIN
+//Actual slot machines generates random numbers repeatedly and sends the numbers at the time play button being clicked. But this script generates numbers on request
+//TODO: Infinite RNG
+
 function GenerateSlot() {
   const randomNumber = Math.random();
 

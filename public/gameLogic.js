@@ -39,17 +39,16 @@ playButton.pixiObj.on("pointerdown", () => {
         headers: { "Content-Type": "application/json" },
         body: `{\"id\": 0, \"betAmount\": ${betAmount}}`,
       })
-        .then((winAndResults) => winAndResults.json())
-        .then((winAndResults) => {
-          creditsAmount += winAndResults.win;
-          creditsAmountText.text = `Credits: ${creditsAmount}`;
+      .then((winAndResults) => winAndResults.json())
+      .then((winAndResults) => {
+        creditsAmount += winAndResults.win;
+        creditsAmountText.text = `Credits: ${creditsAmount}`;
 
-          console.log(winAndResults.results);
-        });
+        console.log(winAndResults.results);
+        ChangeGameState(GameStateEnum.ANIMATION);
+      });
 
       betAmount = 0;
       betAmountText.text = `Bet: ${betAmount}`;
-
-      ChangeGameState(GameStateEnum.ANIMATION);
     }
 });
