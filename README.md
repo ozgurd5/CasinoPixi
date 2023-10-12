@@ -25,9 +25,9 @@ index.html: Includes every script in public folder and is being sent to the clie
 
 pixi.min.js: Pixi.js library.
 
-gameFrontEnd.js: Creates PIXI application, creates sprites and texts that will be manipulated by gameAnimation.js and gameLogic.js.
+gameFrontEnd.js: Creates sprites and texts that will be manipulated by gameAnimation.js and gameLogic.js.
 
-gameStates.js: Keeps state data, game’s current state and event handler.
+gameStates.js: Creates PIXI application. Keeps state data, game’s current state and event handler.
  * STARTED:   Game started but didn't take "credits" from the server
  * IDLE:      Ready to play
  * PLAYED:    Player pressed play button, waiting respond from server
@@ -38,6 +38,8 @@ gameAnimation.js: Handles animations and visual effects over sprites and texts.
 gameLogic.js: Responsible for data transfer with the server. Sends player input to the server which is the play button click and bet amount. Receives spin results and current credits from the server. Also manages game states.
 
 ozgurButton.js = Custom class for buttons.
+
+ozgurSprite.js = Custom class for sprites.
 
 server.js: Starts server, sends index.html to the client in the beginning. Generates slots, calculates win situation, calculates win amount and send them to the client side.
 

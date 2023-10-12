@@ -8,7 +8,7 @@ fetch("/start", {
 .then(res => res.text())
 .then(credits => {
     creditsAmount = credits;
-    creditsAmountText.text = `Credits: ${creditsAmount}`;
+    creditsAmountText.pixiObj.text = `Credits: ${creditsAmount}`;
 
     ChangeGameState(GameStateEnum.IDLE);
 });
@@ -16,21 +16,21 @@ fetch("/start", {
 increaseBetButton.pixiObj.on("pointerdown", () => {
     if (GameState == GameStateEnum.IDLE && (betAmount < creditsAmount)) {
       betAmount += 10;
-      betAmountText.text = `Bet: ${betAmount}`;
+      betAmountText.pixiObj.text = `Bet: ${betAmount}`;
     }
 });
 
 decreaseBetButton.pixiObj.on("pointerdown", () => {
     if (GameState == GameStateEnum.IDLE && (betAmount != 0)) {
       betAmount -= 10;
-      betAmountText.text = `Bet: ${betAmount}`;
+      betAmountText.pixiObj.text = `Bet: ${betAmount}`;
     }
 });
 
 playButton.pixiObj.on("pointerdown", () => {
     if (GameState == GameStateEnum.IDLE && (betAmount != 0)) {
       creditsAmount -= betAmount;
-      creditsAmountText.text = `Credits: ${creditsAmount}`;
+      creditsAmountText.pixiObj.text = `Credits: ${creditsAmount}`;
 
       ChangeGameState(GameStateEnum.PLAYED);
 
@@ -42,13 +42,13 @@ playButton.pixiObj.on("pointerdown", () => {
       .then((winAndResults) => winAndResults.json())
       .then((winAndResults) => {
         creditsAmount += winAndResults.win;
-        creditsAmountText.text = `Credits: ${creditsAmount}`;
+        creditsAmountText.pixiObj.text = `Credits: ${creditsAmount}`;
 
         console.log(winAndResults.results);
         ChangeGameState(GameStateEnum.ANIMATION);
       });
 
       betAmount = 0;
-      betAmountText.text = `Bet: ${betAmount}`;
+      betAmountText.pixiObj.text = `Bet: ${betAmount}`;
     }
 });

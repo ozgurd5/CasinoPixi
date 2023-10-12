@@ -1,4 +1,13 @@
-//KEEPS STATES AND HANDLES EVENTS
+//KEEPS PIXI APP, STATE DATA, CURRENT STATE AND EVENT HANDLER
+
+//#region PIXI APP INIT
+let app = new PIXI.Application({
+    width: 550,
+    height: 810,
+    antialias: true
+});
+document.body.appendChild(app.view);
+//#endregion
 
 //JS doesn't have an enum system so i made my own
 

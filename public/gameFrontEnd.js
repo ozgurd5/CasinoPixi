@@ -1,14 +1,4 @@
-//CREATES PIXI APPLICATION
 //PLACES SPRITES AND TEXTS
-
-//#region PIXI APP INIT
-let app = new PIXI.Application({
-    width: 550,
-    height: 810,
-    antialias: true
-});
-document.body.appendChild(app.view);
-//#endregion
 
 //#region PATHS
 const redColorHex = "#E86A17";
@@ -94,7 +84,7 @@ const slotBackgroundRight = new ozgurSprite(slotBackgroundPaths, 1, 1, 405, 350,
 app.stage.addChild(slotBackgroundRight.pixiObj);
 //#endregion SLOTS AND BOXES
 
-//#region TEXT
+//#region TEXT STYLES
 const blueStyle = new PIXI.TextStyle({
   fontFamily: "Arial",
   fontSize: 32,
@@ -110,18 +100,59 @@ const blueStyle = new PIXI.TextStyle({
   dropShadowDistance: 1,
 });
 
+const redStyle = new PIXI.TextStyle({
+  fontFamily: "Arial",
+  fontSize: 32,
+  fontStyle: "italic",
+  fontWeight: "bold",
+  fill: [redColorHex, "#FFFFFF"], //Gradient
+  stroke: "#000000",
+  strokeThickness: 3,
+  dropShadow: true,
+  dropShadowColor: "#666666",
+  dropShadowBlur: 2,
+  dropShadowAngle: 90,
+  dropShadowDistance: 1,
+});
+
+const greenStyle = new PIXI.TextStyle({
+  fontFamily: "Arial",
+  fontSize: 32,
+  fontStyle: "italic",
+  fontWeight: "bold",
+  fill: [greenColorHex, "#FFFFFF"], //Gradient
+  stroke: "#000000",
+  strokeThickness: 3,
+  dropShadow: true,
+  dropShadowColor: "#666666",
+  dropShadowBlur: 2,
+  dropShadowAngle: 90,
+  dropShadowDistance: 1,
+});
+
+const yellowStyle = new PIXI.TextStyle({
+  fontFamily: "Arial",
+  fontSize: 32,
+  fontStyle: "italic",
+  fontWeight: "bold",
+  fill: [yellowColorHex, "#FFFFFF"], //Gradient
+  stroke: "#000000",
+  strokeThickness: 3,
+  dropShadow: true,
+  dropShadowColor: "#666666",
+  dropShadowBlur: 2,
+  dropShadowAngle: 90,
+  dropShadowDistance: 1,
+});
+
+const textStyles = [blueStyle, redStyle, greenStyle, yellowStyle];
+//#endregion TEXTSTYLES
+
 let betAmount = 0;
 let creditsAmount = 0;
 
-const betAmountText = new PIXI.Text(`Bet: ${betAmount}`, blueStyle);
-betAmountText.anchor.set(0.5, 0.5);
-betAmountText.x = 275;
-betAmountText.y = 675;
-app.stage.addChild(betAmountText);
+const betAmountText = new ozgurText(`Bet: ${betAmount}`, textStyles, 275, 675, 0.1);
+app.stage.addChild(betAmountText.pixiObj);
 
-const creditsAmountText = new PIXI.Text(`Credits: ${creditsAmount}`, blueStyle);
-creditsAmountText.anchor.set(0.5, 0.5);
-creditsAmountText.x = 275;
-creditsAmountText.y = 750;
-app.stage.addChild(creditsAmountText);
-//#endregion TEXT
+const creditsAmountText = new ozgurText(`Credits: ${creditsAmount}`, textStyles, 275, 750, 0.1);
+app.stage.addChild(creditsAmountText.pixiObj);
