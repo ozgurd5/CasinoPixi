@@ -2,9 +2,9 @@
 
 //#region PIXI APP INIT
 let app = new PIXI.Application({
-    width: 550,
-    height: 810,
-    antialias: true
+  width: 550,
+  height: 810,
+  antialias: true,
 });
 document.body.appendChild(app.view);
 //#endregion
@@ -18,11 +18,11 @@ document.body.appendChild(app.view);
  * @member ANIMATION: Sever responded, animations playing
  */
 const GameStateEnum = {
-    "STARTED": 0,
-    "IDLE": 1,
-    "PLAYED": 2,
-    "ANIMATION": 3,
-}
+  STARTED: 0,
+  IDLE: 1,
+  PLAYED: 2,
+  ANIMATION: 3,
+};
 
 /**
  * @member STARTED:   Started but didn't take "credits" from the server
@@ -31,10 +31,10 @@ const GameStateEnum = {
  * @member ANIMATION: Sever responded, animations playing
  */
 const ReverseGameStateEnum = {
-    0: "STARTED",
-    1: "IDLE",
-    2: "PLAYED",
-    3: "ANIMATION",
+  0: "STARTED",
+  1: "IDLE",
+  2: "PLAYED",
+  3: "ANIMATION",
 };
 
 /**
@@ -47,11 +47,11 @@ const EventHandler = new EventTarget();
 
 /**
  * Use GameStateEnum.IDLE etc. as the parameter
- * @param {GameStateEnum} newGameState 
+ * @param {GameStateEnum} newGameState
  */
 function ChangeGameState(newGameState) {
-    GameState = newGameState;
-    
-    const gameStateChange = new CustomEvent("gameStateChange", {detail: newGameState});
-    EventHandler.dispatchEvent(gameStateChange);
+  GameState = newGameState;
+
+  const gameStateChange = new CustomEvent("gameStateChange", { detail: newGameState });
+  EventHandler.dispatchEvent(gameStateChange);
 }

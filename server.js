@@ -26,20 +26,20 @@ function GetCredits(id) {
 
 //#region GENERATING SLOTS
 const rates = {
-  "cherry": 0.5,
-  "bell": 0.3,
-  "bar": 0.15,
-  "seven": 0.05
-}
+  cherry: 0.5,
+  bell: 0.3,
+  bar: 0.15,
+  seven: 0.05
+};
 
 //RPT ~95%
 //TODO: GET RTP AND RATES AND CALCULATE PAYOUTS AUTOMATICALLY
 
 const payouts = {
-  "cherry": 7,
-  "bell": 35,
-  "bar": 282,
-  "seven": 7600,
+  cherry: 7,
+  bell: 35,
+  bar: 282,
+  seven: 7600
 };
 
 //Actual slot machines generates random numbers repeatedly and sends the numbers at the time play button being clicked. But this script generates numbers on request
@@ -50,7 +50,7 @@ function GenerateSlot() {
 
   if (randomNumber <= rates["cherry"]) return "cherry";
   else if (randomNumber > rates["cherry"] && randomNumber <= rates["cherry"] + rates["bell"]) return "bell";
-  else if (randomNumber > rates["cherry"] + rates["bell"] && randomNumber <= rates["cherry"] + rates["bell"] + rates ["bar"]) return "bar";
+  else if (randomNumber > rates["cherry"] + rates["bell"] && randomNumber <= rates["cherry"] + rates["bell"] + rates["bar"]) return "bar";
   else return "seven";
 }
 //#endregion
@@ -60,7 +60,6 @@ const fs = require("fs");
 const userDataPath = "user-data.json";
 
 app.post("/playButton", express.json(), (req, res) => {
-
   //Remove bet amount from the credits
   ChangeCredits(req.body.id, -1 * req.body.betAmount);
 
@@ -82,7 +81,7 @@ app.post("/playButton", express.json(), (req, res) => {
   }
 
   //Send data to the client side
-  res.status(200).json({ "win": winAmount, "results": generatedNumbers});
+  res.status(200).json({ win: winAmount, results: generatedNumbers });
 });
 
 function ChangeCredits(id, amount) {

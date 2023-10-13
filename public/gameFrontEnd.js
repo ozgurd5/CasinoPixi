@@ -97,7 +97,7 @@ const blueStyle = new PIXI.TextStyle({
   dropShadowColor: "#666666",
   dropShadowBlur: 2,
   dropShadowAngle: 90,
-  dropShadowDistance: 1,
+  dropShadowDistance: 1
 });
 
 const redStyle = new PIXI.TextStyle({
@@ -112,7 +112,7 @@ const redStyle = new PIXI.TextStyle({
   dropShadowColor: "#666666",
   dropShadowBlur: 2,
   dropShadowAngle: 90,
-  dropShadowDistance: 1,
+  dropShadowDistance: 1
 });
 
 const greenStyle = new PIXI.TextStyle({
@@ -127,7 +127,7 @@ const greenStyle = new PIXI.TextStyle({
   dropShadowColor: "#666666",
   dropShadowBlur: 2,
   dropShadowAngle: 90,
-  dropShadowDistance: 1,
+  dropShadowDistance: 1
 });
 
 const yellowStyle = new PIXI.TextStyle({
@@ -142,7 +142,7 @@ const yellowStyle = new PIXI.TextStyle({
   dropShadowColor: "#666666",
   dropShadowBlur: 2,
   dropShadowAngle: 90,
-  dropShadowDistance: 1,
+  dropShadowDistance: 1
 });
 
 const textStyles = [blueStyle, redStyle, greenStyle, yellowStyle];

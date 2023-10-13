@@ -17,12 +17,14 @@ class ozgurSprite {
     this.pixiObj.x = positionX;
     this.pixiObj.y = positionY;
 
-    EventHandler.addEventListener("gameStateChange", event => { this.OnGameStateChange(event.detail); });
+    EventHandler.addEventListener("gameStateChange", (event) => {
+      this.OnGameStateChange(event.detail);
+    });
 
     this.isAnimated = false;
     this.ticker = new PIXI.Ticker();
     this.ticker.maxFPS = 1;
-    this.ticker.add(deltaTime => this.PlayAnimation())
+    this.ticker.add((deltaTime) => this.PlayAnimation());
     this.ticker.start();
 
     this.spriteIndex = 0;
@@ -31,11 +33,10 @@ class ozgurSprite {
   OnGameStateChange(newGameState) {
     if (newGameState == GameStateEnum.ANIMATION) this.isAnimated = true;
     else this.isAnimated = false;
-   }
+  }
 
   PlayAnimation() {
     if (this.isAnimated) {
-
       this.spriteIndex++;
       this.spriteIndex = this.spriteIndex % 4;
       this.pixiObj.texture = this.sprites[this.spriteIndex];
