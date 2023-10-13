@@ -1,5 +1,5 @@
 class ozgurButton {
-  constructor(paths, scale, positionX, positionY, animationSpeed) {
+  constructor(paths, scale, positionX, positionY) {
     //Create sprites from paths
     this.sprites = [];
     paths.forEach(item => {
@@ -7,7 +7,7 @@ class ozgurButton {
     });
     
     //Create button object
-    this.pixiObj = new PIXI.AnimatedSprite(this.sprites);
+    this.pixiObj = PIXI.Sprite.from(this.sprites[0]);
 
     //Default options
     this.pixiObj.anchor.set(0.5, 0.5);
@@ -18,26 +18,29 @@ class ozgurButton {
     this.pixiObj.scale.set(scale, scale);
     this.pixiObj.x = positionX;
     this.pixiObj.y = positionY;
-    this.pixiObj.animationSpeed = animationSpeed;
 
-    EventHandler.addEventListener("gameStateChange", event => { this.OnGameStateChange(event.detail) });
+    EventHandler.addEventListener("gameStateChange", event => { this.OnGameStateChange(event.detail); });
+    
+    this.isAnimated = false;
+    this.ticker = new PIXI.Ticker();
+    this.ticker.maxFPS = 1;
+    this.ticker.add(deltaTime => this.PlayAnimation())
+    this.ticker.start();
+
+    this.spriteIndex = 0;
   }
 
   OnGameStateChange(newGameState) {
-    if (newGameState == GameStateEnum.IDLE) {
-      this.pixiObj.interactive = true;
-      this.pixiObj.cursor = "pointer";
-    }
+    if (newGameState == GameStateEnum.ANIMATION) this.isAnimated = true;
+    else this.isAnimated = false;
+   }
 
-    else if (newGameState == GameStateEnum.ANIMATION) {
-      this.pixiObj.play();
-      this.pixiObj.interactive = false;
-      this.pixiObj.cursor = "default";
-    }
+  PlayAnimation() {
+    if (this.isAnimated) {
 
-    else {
-      this.pixiObj.interactive = false;
-      this.pixiObj.cursor = "default";
+      this.spriteIndex++;
+      this.spriteIndex = this.spriteIndex % 4;
+      this.pixiObj.texture = this.sprites[this.spriteIndex];
     }
   }
 }

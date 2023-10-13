@@ -1,5 +1,5 @@
 class ozgurText {
-   constructor(text, styles, positionX, positionY, animationSpeed) {
+   constructor(text, styles, positionX, positionY) {
       //Create text object
       this.styles = styles;
       this.pixiObj = new PIXI.Text(text, this.styles[0]);
@@ -10,14 +10,13 @@ class ozgurText {
       //Modified options
       this.pixiObj.x = positionX;
       this.pixiObj.y = positionY;
-      this.animationSpeed = animationSpeed;
 
       EventHandler.addEventListener("gameStateChange", event => { this.OnGameStateChange(event.detail); });
 
       this.isAnimated = false;
       this.ticker = new PIXI.Ticker();
       this.ticker.maxFPS = 1;
-      this.ticker.add(deltaTime => this.PlayTextAnimation(deltaTime))
+      this.ticker.add(deltaTime => this.PlayAnimation())
       this.ticker.start();
 
       this.styleIndex = 0;
@@ -29,11 +28,8 @@ class ozgurText {
       else this.isAnimated = false;
    }
 
-   PlayTextAnimation(deltaTime) {
+   PlayAnimation() {
       if (this.isAnimated) {
-
-         this.timer += deltaTime;
-         console.log(deltaTime);
 
          this.styleIndex++;
          this.styleIndex = this.styleIndex % 4;

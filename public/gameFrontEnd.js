@@ -57,30 +57,30 @@ app.stage.addChild(slotMachineSprite);
 //#endregion SLOT MACHINE
 
 //#region BUTTONS
-const playButton = new ozgurButton(buttonPaths, 1, 275, 620, 0.1);
+const playButton = new ozgurButton(buttonPaths, 1, 275, 620);
 app.stage.addChild(playButton.pixiObj);
 
-const increaseBetButton = new ozgurButton(upButtonPaths, 1, 400, 675, 0.1);
+const increaseBetButton = new ozgurButton(upButtonPaths, 1, 400, 675);
 app.stage.addChild(increaseBetButton.pixiObj);
 
-const decreaseBetButton = new ozgurButton(downButtonPaths, 1, 150, 675, 0.1);
+const decreaseBetButton = new ozgurButton(downButtonPaths, 1, 150, 675);
 app.stage.addChild(decreaseBetButton.pixiObj);
 //#endregion BUTTONS
 
 //#region SLOTS AND BOXES
-const betBox = new ozgurSprite(boxFlatPaths, 1, 1, 275, 675, 0.1);
+const betBox = new ozgurSprite(boxFlatPaths, 1, 1, 275, 675);
 app.stage.addChild(betBox.pixiObj);
 
-const creditsBox = new ozgurSprite(boxFlatPaths, 1.5, 1, 275, 750, 0.1);
+const creditsBox = new ozgurSprite(boxFlatPaths, 1.5, 1, 275, 750);
 app.stage.addChild(creditsBox.pixiObj);
 
-const slotBackgroundLeft = new ozgurSprite(slotBackgroundPaths, 1, 1, 145, 350, 0.1);
+const slotBackgroundLeft = new ozgurSprite(slotBackgroundPaths, 1, 1, 145, 350);
 app.stage.addChild(slotBackgroundLeft.pixiObj);
 
-const slotBackgroundMiddle = new ozgurSprite(slotBackgroundPaths, 1, 1, 275, 350, 0.1);
+const slotBackgroundMiddle = new ozgurSprite(slotBackgroundPaths, 1, 1, 275, 350);
 app.stage.addChild(slotBackgroundMiddle.pixiObj);
 
-const slotBackgroundRight = new ozgurSprite(slotBackgroundPaths, 1, 1, 405, 350, 0.1);
+const slotBackgroundRight = new ozgurSprite(slotBackgroundPaths, 1, 1, 405, 350);
 app.stage.addChild(slotBackgroundRight.pixiObj);
 //#endregion SLOTS AND BOXES
 
@@ -151,8 +151,8 @@ const textStyles = [blueStyle, redStyle, greenStyle, yellowStyle];
 let betAmount = 0;
 let creditsAmount = 0;
 
-const betAmountText = new ozgurText(`Bet: ${betAmount}`, textStyles, 275, 675, 0.1);
+const betAmountText = new ozgurText(`Bet: ${betAmount}`, textStyles, 275, 675);
 app.stage.addChild(betAmountText.pixiObj);
 
-const creditsAmountText = new ozgurText(`Credits: ${creditsAmount}`, textStyles, 275, 750, 0.1);
+const creditsAmountText = new ozgurText(`Credits: ${creditsAmount}`, textStyles, 275, 750);
 app.stage.addChild(creditsAmountText.pixiObj);
