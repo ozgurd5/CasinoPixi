@@ -60,8 +60,12 @@ function ChangeGameState(newGameState) {
 }
 //#endregion
 
-//#region ANIMATION TICKER INIT
+//#region TICKER INIT
 const AnimationTicker = new PIXI.Ticker();
 AnimationTicker.maxFPS = 1;
 AnimationTicker.start();
+
+//Slot animation must be smooth and faster, so we have a normal ticker for it
+const SlotTicker = new PIXI.Ticker();
+SlotTicker.start();
 //#endregion

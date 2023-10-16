@@ -11,36 +11,38 @@ public<br/>
 -index.html<br/>
 -pixi.min.js<br/>
 -gameFrontEnd.js<br/>
--gameHandler.js<br/>
 -gameLogic.js<br/>
+-gameStates.js<br/>
 -ozgurButton.js<br/>
+-ozgurSlot.js<br/>
 -ozgurSprite.js<br/>
 -ozgurText.js<br/>
 server.js<br/>
 user-data.json
 
-public: Includes files that will be sent to the client side. Actually only index.html is being sent to the client side.
+public: Includes files that will be sent to the client side.
 
 index.html: Includes every script in public folder and is being sent to the client side.
 
 pixi.min.js: Pixi.js library.
 
-gameFrontEnd.js: Creates sprites and texts that will be manipulated by gameAnimation.js and gameLogic.js.
+gameFrontEnd.js: Creates sprites and texts that will be manipulated by gameLogic.js and their respective classes.
 
-gameStates.js: Creates PIXI application. Keeps state data, game’s current state and event handler.
+gameLogic.js: Responsible for data transfer with the server. Sends player input to the server which is the play button click and bet amount. Receives spin results and current credits from the server. Also manages game states.
+
+gameStates.js: Creates PIXI application. Keeps state data, game’s current state, event handler and tickers.
 
 - STARTED: Game started but didn't take "credits" from the server
 - IDLE: Ready to play
 - PLAYED: Player pressed play button, waiting respond from server
 - ANIMATION: Sever responded, animations are playing
 
-gameLogic.js: Responsible for data transfer with the server. Sends player input to the server which is the play button click and bet amount. Receives spin results and current credits from the server. Also manages game states.
+ozgurButton.js: Custom class for buttons.
+ozgurSlot.js: Custom class for slots.
+ozgurSprite.js: Custom class for sprites.
+ozgurText.js: Custom class for texts.
 
-ozgurButton.js = Custom class for buttons.
-
-ozgurSprite.js = Custom class for sprites.
-
-ozgurText.js = Custom class for texts.
+Custom Classes: They encapsulate pixi objects, set their anchors to their centers and include their animation logic.
 
 server.js: Starts server, sends index.html to the client in the beginning. Generates slots, calculates win situation, calculates win amount and send them to the client side.
 

@@ -6,8 +6,9 @@ class ozgurSprite {
       this.sprites.push(PIXI.Texture.from(item));
     });
 
-    //Create animated sprite object
+    //Create sprite object
     this.pixiObj = PIXI.Sprite.from(this.sprites[0]);
+    app.stage.addChild(this.pixiObj);
 
     //Default option
     this.pixiObj.anchor.set(0.5, 0.5);
@@ -17,10 +18,10 @@ class ozgurSprite {
     this.pixiObj.x = positionX;
     this.pixiObj.y = positionY;
 
+    //Animation Init
     EventHandler.addEventListener("gameStateChange", (event) => {
       this.OnGameStateChange(event.detail);
     });
-
     AnimationTicker.add((deltaTime) => this.PlayAnimation());
     this.spriteIndex = 0;
   }

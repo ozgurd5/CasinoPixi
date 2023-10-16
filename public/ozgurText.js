@@ -3,6 +3,7 @@ class ozgurText {
     //Create text object
     this.styles = styles;
     this.pixiObj = new PIXI.Text(text, this.styles[0]);
+    app.stage.addChild(this.pixiObj);
 
     //Default option
     this.pixiObj.anchor.set(0.5, 0.5);
@@ -11,10 +12,10 @@ class ozgurText {
     this.pixiObj.x = positionX;
     this.pixiObj.y = positionY;
 
+    //Animation Init
     EventHandler.addEventListener("gameStateChange", (event) => {
       this.OnGameStateChange(event.detail);
     });
-
     AnimationTicker.add((deltaTime) => this.PlayAnimation());
     this.styleIndex = 0;
   }

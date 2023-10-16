@@ -1,9 +1,10 @@
 //HANDLES CLIENT SIDE GAME LOGIC
 
+//#region TAKE USER CREDITS
 fetch("/start", {
   method: "POST",
   headers: { "Content-Type": "text/plain" },
-  body: "0",
+  body: "0"
 })
   .then((res) => res.text())
   .then((credits) => {
@@ -12,7 +13,9 @@ fetch("/start", {
 
     ChangeGameState(GameStateEnum.IDLE);
   });
+//#endregion
 
+//#region INCREASE/DECREASE BET
 increaseBetButton.pixiObj.on("pointerdown", () => {
   if (GameState == GameStateEnum.IDLE && betAmount < creditsAmount) {
     betAmount += 10;
@@ -26,6 +29,7 @@ decreaseBetButton.pixiObj.on("pointerdown", () => {
     betAmountText.pixiObj.text = `Bet: ${betAmount}`;
   }
 });
+//#endregion
 
 playButton.pixiObj.on("pointerdown", () => {
   if (GameState == GameStateEnum.IDLE && betAmount != 0) {
@@ -37,7 +41,7 @@ playButton.pixiObj.on("pointerdown", () => {
     fetch("/playButton", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: `{\"id\": 0, \"betAmount\": ${betAmount}}`,
+      body: `{\"id\": 0, \"betAmount\": ${betAmount}}`
     })
       .then((winAndResults) => winAndResults.json())
       .then((winAndResults) => {

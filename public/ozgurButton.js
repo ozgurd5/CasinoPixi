@@ -8,6 +8,7 @@ class ozgurButton {
 
     //Create button object
     this.pixiObj = PIXI.Sprite.from(this.sprites[0]);
+    app.stage.addChild(this.pixiObj);
 
     //Default options
     this.pixiObj.anchor.set(0.5, 0.5);
@@ -19,10 +20,10 @@ class ozgurButton {
     this.pixiObj.x = positionX;
     this.pixiObj.y = positionY;
 
+    //Animation Init
     EventHandler.addEventListener("gameStateChange", (event) => {
       this.OnGameStateChange(event.detail);
     });
-
     AnimationTicker.add((deltaTime) => this.PlayAnimation());
     this.spriteIndex = 0;
   }

@@ -1,4 +1,5 @@
-//PLACES SPRITES AND TEXTS
+//PLACES SPRITES AND TEXTS.
+//DRAW ORDER: SLOT BACKGROUNDS, SLOTS, BUTTONS+BOXES, TEXTS
 
 //#region PATHS
 const redUpButtonPath = "sprites/redUp.png";
@@ -43,41 +44,38 @@ const blueSlotBackgroundPath = "sprites/slotBackgroundBlue.png";
 const yellowSlotBackgroundPath = "sprites/slotBackgroundYellow.png";
 const slotBackgroundPaths = [blueSlotBackgroundPath, redSlotBackgroundPath, greenSlotBackgroundPath, yellowSlotBackgroundPath];
 
+const slotCherryPath = "sprites/slotCherry.png";
+const slotBellPaht = "sprites/slotBell.png";
+const slotBarPath = "sprites/slotBar.png";
+const slot7Path = "sprites/slot7.png";
+const slotPaths = [slotCherryPath, slotBellPaht, slotBarPath, slot7Path];
+
 const slotMachinePath = "sprites/slotMachine.png";
-//#endregion PATHS
+//#endregion
+
+//#region SLOTS
+const slotBackgroundLeft = new ozgurSprite(slotBackgroundPaths, 1, 1, 145, 350);
+const slotBackgroundMiddle = new ozgurSprite(slotBackgroundPaths, 1, 1, 275, 350);
+const slotBackgroundRight = new ozgurSprite(slotBackgroundPaths, 1, 1, 405, 350);
+
+const leftSlot = new ozgurSlot(slotPaths, 0.9, 0.9, 145, 150, 100);
+const middleSlot = new ozgurSlot(slotPaths, 0.9, 0.9, 275, 150, 100);
+const rightSlot = new ozgurSlot(slotPaths, 0.9, 0.9, 405, 150, 100);
+//#endregion
 
 //#region SLOT MACHINE
 const slotMachineSprite = PIXI.Sprite.from(slotMachinePath);
 app.stage.addChild(slotMachineSprite);
-//#endregion SLOT MACHINE
+//#endregion
 
-//#region BUTTONS
+//#region BUTTONS AND BOXES
 const playButton = new ozgurButton(buttonPaths, 1, 275, 620);
-app.stage.addChild(playButton.pixiObj);
-
 const increaseBetButton = new ozgurButton(upButtonPaths, 1, 400, 675);
-app.stage.addChild(increaseBetButton.pixiObj);
-
 const decreaseBetButton = new ozgurButton(downButtonPaths, 1, 150, 675);
-app.stage.addChild(decreaseBetButton.pixiObj);
-//#endregion BUTTONS
 
-//#region SLOTS AND BOXES
 const betBox = new ozgurSprite(boxFlatPaths, 1, 1, 275, 675);
-app.stage.addChild(betBox.pixiObj);
-
 const creditsBox = new ozgurSprite(boxFlatPaths, 1.5, 1, 275, 750);
-app.stage.addChild(creditsBox.pixiObj);
-
-const slotBackgroundLeft = new ozgurSprite(slotBackgroundPaths, 1, 1, 145, 350);
-app.stage.addChild(slotBackgroundLeft.pixiObj);
-
-const slotBackgroundMiddle = new ozgurSprite(slotBackgroundPaths, 1, 1, 275, 350);
-app.stage.addChild(slotBackgroundMiddle.pixiObj);
-
-const slotBackgroundRight = new ozgurSprite(slotBackgroundPaths, 1, 1, 405, 350);
-app.stage.addChild(slotBackgroundRight.pixiObj);
-//#endregion SLOTS AND BOXES
+//#endregion
 
 //#region TEXT STYLES
 const redColorHex = "#E86A17";
@@ -146,8 +144,9 @@ const yellowStyle = new PIXI.TextStyle({
 });
 
 const textStyles = [blueStyle, redStyle, greenStyle, yellowStyle];
-//#endregion TEXTSTYLES
+//#endregion
 
+//#region TEXTS
 let betAmount = 0;
 let creditsAmount = 0;
 
@@ -156,3 +155,11 @@ app.stage.addChild(betAmountText.pixiObj);
 
 const creditsAmountText = new ozgurText(`Credits: ${creditsAmount}`, textStyles, 275, 750);
 app.stage.addChild(creditsAmountText.pixiObj);
+//#endregion
+
+//#region DEBUG
+//const increaseMiddleButton = new ozgurButton(buttonPaths, 1, 275, 510);
+//increaseMiddleButton.pixiObj.on("pointerdown", () => {
+//  middleSlot.Spin();
+//});
+//#endregion
