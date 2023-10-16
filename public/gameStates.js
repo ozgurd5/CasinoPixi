@@ -1,16 +1,17 @@
-//KEEPS PIXI APP, STATE DATA, CURRENT STATE AND EVENT HANDLER
+//KEEPS PIXI APP, STATE DATA, CURRENT STATE, ANIMATION TICKER AND EVENT HANDLER
 
 //#region PIXI APP INIT
 let app = new PIXI.Application({
   width: 550,
   height: 810,
-  antialias: true,
+  antialias: true
 });
 document.body.appendChild(app.view);
 //#endregion
 
 //JS doesn't have an enum system so i made my own
 
+//#region STATE INIT
 /**
  * @member STARTED:   Started but didn't take "credits" from the server
  * @member IDLE:      Ready to play
@@ -21,7 +22,7 @@ const GameStateEnum = {
   STARTED: 0,
   IDLE: 1,
   PLAYED: 2,
-  ANIMATION: 3,
+  ANIMATION: 3
 };
 
 /**
@@ -34,7 +35,7 @@ const ReverseGameStateEnum = {
   0: "STARTED",
   1: "IDLE",
   2: "PLAYED",
-  3: "ANIMATION",
+  3: "ANIMATION"
 };
 
 /**
@@ -42,7 +43,9 @@ const ReverseGameStateEnum = {
  * @function ChangeGameState
  */
 let GameState = GameStateEnum.STARTED; //Default beginning state
+//#endregion
 
+//#region EVENT HANDLER INIT AND CHANGE GAME STATE FUNCTION
 const EventHandler = new EventTarget();
 
 /**
@@ -55,3 +58,10 @@ function ChangeGameState(newGameState) {
   const gameStateChange = new CustomEvent("gameStateChange", { detail: newGameState });
   EventHandler.dispatchEvent(gameStateChange);
 }
+//#endregion
+
+//#region ANIMATION TICKER INIT
+const AnimationTicker = new PIXI.Ticker();
+AnimationTicker.maxFPS = 1;
+AnimationTicker.start();
+//#endregion

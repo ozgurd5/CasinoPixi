@@ -1,11 +1,6 @@
 //PLACES SPRITES AND TEXTS
 
 //#region PATHS
-const redColorHex = "#E86A17";
-const greenColorHex = "#73CD4B";
-const blueColorHex = "#19A5E1";
-const yellowColorHex = "#FFCC00";
-
 const redUpButtonPath = "sprites/redUp.png";
 const greenUpButtonPath = "sprites/greenUp.png";
 const blueUpButtonPath = "sprites/blueUp.png";
@@ -85,6 +80,11 @@ app.stage.addChild(slotBackgroundRight.pixiObj);
 //#endregion SLOTS AND BOXES
 
 //#region TEXT STYLES
+const redColorHex = "#E86A17";
+const greenColorHex = "#73CD4B";
+const blueColorHex = "#19A5E1";
+const yellowColorHex = "#FFCC00";
+
 const blueStyle = new PIXI.TextStyle({
   fontFamily: "Arial",
   fontSize: 32,

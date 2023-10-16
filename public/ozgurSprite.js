@@ -21,12 +21,7 @@ class ozgurSprite {
       this.OnGameStateChange(event.detail);
     });
 
-    this.isAnimated = false;
-    this.ticker = new PIXI.Ticker();
-    this.ticker.maxFPS = 1;
-    this.ticker.add((deltaTime) => this.PlayAnimation());
-    this.ticker.start();
-
+    AnimationTicker.add((deltaTime) => this.PlayAnimation());
     this.spriteIndex = 0;
   }
 
