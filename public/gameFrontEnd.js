@@ -156,10 +156,3 @@ app.stage.addChild(betAmountText.pixiObj);
 const creditsAmountText = new ozgurText(`Credits: ${creditsAmount}`, textStyles, 275, 750);
 app.stage.addChild(creditsAmountText.pixiObj);
 //#endregion
-
-//#region DEBUG
-//const increaseMiddleButton = new ozgurButton(buttonPaths, 1, 275, 510);
-//increaseMiddleButton.pixiObj.on("pointerdown", () => {
-//  middleSlot.Spin();
-//});
-//#endregion

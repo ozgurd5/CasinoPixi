@@ -31,6 +31,10 @@ class ozgurSlot {
       this.OnGameStateChange(event.detail);
     });
     SlotTicker.add((deltaTime) => this.PlayAnimation());
+
+    //Counters
+    this.movingDownCount = 0;
+    this.turnCount = 0;
   }
 
   OnGameStateChange(newGameState) {
@@ -38,17 +42,31 @@ class ozgurSlot {
     else this.isAnimated = false;
   }
 
-  //TODO: EXPLAIN
+  //4 slots starts to move down. After they moved one slot down, the one in the bottom, which is the 3rd index, goes to the top and becomes the 0th index.
   PlayAnimation() {
     if (this.isAnimated) {
+      //Move slots down
       for (let i = 0; i < this.slots.length; i++) {
         this.pixiObj[i].y += 15;
       }
 
-      if (this.pixiObj[2].y >= 450) {
+      //Put the bottom one on top and the 0th index when the top one is in the place of the second one. In other words, when every slot move one slot down.
+      if (this.pixiObj[0].y >= 250) {
         this.pixiObj = [this.pixiObj[3], this.pixiObj[0], this.pixiObj[1], this.pixiObj[2]];
         this.pixiObj[0].y = 150;
+        this.movingDownCount++;
+      }
+
+      //Count turns
+      if (this.movingDownCount == 4) {
+        this.movingDownCount = 0;
+        this.turnCount++;
       }
     }
+  }
+
+  StopAnimationManually() {
+    this.isAnimated = false;
+    this.turnCount = 0;
   }
 }

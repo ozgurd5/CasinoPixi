@@ -45,6 +45,14 @@ const ReverseGameStateEnum = {
 let GameState = GameStateEnum.STARTED; //Default beginning state
 //#endregion
 
+//#region TICKER INIT
+const AnimationTicker = new PIXI.Ticker();
+AnimationTicker.maxFPS = 1;
+
+//Slot animation must be smooth and faster, so we have a normal ticker for it
+const SlotTicker = new PIXI.Ticker();
+//#endregion
+
 //#region EVENT HANDLER INIT AND CHANGE GAME STATE FUNCTION
 const EventHandler = new EventTarget();
 
@@ -53,19 +61,15 @@ const EventHandler = new EventTarget();
  * @param {GameStateEnum} newGameState
  */
 function ChangeGameState(newGameState) {
+  //Stop the tickers when exiting the animation state
+  if (GameState == GameStateEnum.ANIMATION) {
+    AnimationTicker.stop();
+    SlotTicker.stop();
+  }
+
   GameState = newGameState;
 
   const gameStateChange = new CustomEvent("gameStateChange", { detail: newGameState });
   EventHandler.dispatchEvent(gameStateChange);
 }
-//#endregion
-
-//#region TICKER INIT
-const AnimationTicker = new PIXI.Ticker();
-AnimationTicker.maxFPS = 1;
-AnimationTicker.start();
-
-//Slot animation must be smooth and faster, so we have a normal ticker for it
-const SlotTicker = new PIXI.Ticker();
-SlotTicker.start();
 //#endregion
