@@ -30,7 +30,13 @@ class ozgurButton {
 
   OnGameStateChange(newGameState) {
     if (newGameState == GameStateEnum.ANIMATION) this.isAnimated = true;
-    else this.isAnimated = false;
+    else {
+      this.isAnimated = false;
+
+      //Turn to the default color when animations are done
+      this.spriteIndex = 0;
+      this.pixiObj.texture = this.sprites[this.spriteIndex];
+    }
   }
 
   PlayAnimation() {

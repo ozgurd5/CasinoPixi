@@ -53,7 +53,7 @@ const slotPaths = [slotCherryPath, slotBellPaht, slotBarPath, slot7Path];
 const slotMachinePath = "sprites/slotMachine.png";
 //#endregion
 
-//#region SLOTS
+//#region SLOT BACKGROUNDS AND SLOTS
 const slotBackgroundLeft = new ozgurSprite(slotBackgroundPaths, 1, 1, 145, 350);
 const slotBackgroundMiddle = new ozgurSprite(slotBackgroundPaths, 1, 1, 275, 350);
 const slotBackgroundRight = new ozgurSprite(slotBackgroundPaths, 1, 1, 405, 350);

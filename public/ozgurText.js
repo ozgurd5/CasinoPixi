@@ -22,7 +22,13 @@ class ozgurText {
 
   OnGameStateChange(newGameState) {
     if (newGameState == GameStateEnum.ANIMATION) this.isAnimated = true;
-    else this.isAnimated = false;
+    else {
+      this.isAnimated = false;
+
+      //Turn to the default color when animations are done
+      this.styleIndex = 0;
+      this.pixiObj.style = this.styles[this.styleIndex];
+    }
   }
 
   PlayAnimation() {

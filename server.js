@@ -33,8 +33,6 @@ const rates = {
 };
 
 //RPT ~95%
-//TODO: GET RTP AND RATES AND CALCULATE PAYOUTS AUTOMATICALLY
-
 const payouts = {
   cherry: 7,
   bell: 35,
@@ -42,9 +40,7 @@ const payouts = {
   seven: 7600
 };
 
-//Actual slot machines generates random numbers repeatedly and sends the numbers at the time play button being clicked. But this script generates numbers on request
-//TODO: Infinite RNG
-
+//Actual slot machines generates random numbers repeatedly and sends the numbers at the time play button being clicked. But this project generates numbers on request
 function GenerateSlot() {
   const randomNumber = Math.random();
 
