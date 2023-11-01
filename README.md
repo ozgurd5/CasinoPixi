@@ -37,9 +37,9 @@ gameStates.js: Creates PIXI application. Keeps state data, game’s current stat
 - PLAYED: Player pressed play button, waiting respond from server
 - ANIMATION: Sever responded, animations are playing
 
-ozgurButton.js: Custom class for buttons.
-ozgurSlot.js: Custom class for slots.
-ozgurSprite.js: Custom class for sprites.
+ozgurButton.js: Custom class for buttons.<br/>
+ozgurSlot.js: Custom class for slots.<br/>
+ozgurSprite.js: Custom class for sprites.<br/>
 ozgurText.js: Custom class for texts.
 
 Custom Classes: They encapsulate pixi objects, set their anchors to their centers and include their animation logic.
