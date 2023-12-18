@@ -1,6 +1,9 @@
 # CasinoPixi
-
 Casino Pixi is a slot machine game that uses Pixi.js, Node.js and Express.js. Game features colored animations and server-client game logic.
+
+<p align="left">
+  <img src="https://github.com/ozgurd5/CasinoPixi/blob/main/videos_gifs/gifslot.gif" alt="animated" />
+</p>
 
 Assets:<br/>
 https://cazwolf.itch.io/pixel-slot-machine<br/>
